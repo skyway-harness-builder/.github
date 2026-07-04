@@ -20,15 +20,19 @@
 A `.sky` file is a whole automation you can read in one sitting: the trigger, the DAG, every prompt, every budget. skyway's daemon runs it — Claude sessions, bash, scripts, HTTP calls, approval gates — streams each step live over WebSocket, and keeps the full run history queryable.
 
 ```mermaid
+```mermaid
 flowchart LR
-    T([GitHub webhook<br/>cron · manual]) --> S[scan<br/><sub>bash</sub>]
-    S --> R[review ×N<br/><sub>foreach · claude</sub>]
-    R --> J{judge<br/><sub>fail-closed gate</sub>}
+    T([GitHub webhook<br/>cron · manual]) --> S["scan — bash"]
+    S --> R["review ×N — foreach, claude"]
+    R --> J{"judge — fail-closed gate"}
     J -->|pass| D([done · emit])
-    J -->|fail| F[notify<br/><sub>on failure only</sub>]
+    J -->|fail| F["notify — on failure only"]
 
     style T fill:#38bdf8,color:#fff,stroke:none
     style D fill:#22c55e,color:#fff,stroke:none
+    style F fill:#f43f5e,color:#fff,stroke:none
+    style J fill:#6366f1,color:#fff,stroke:none
+```
     style F fill:#f43f5e,color:#fff,stroke:none
     style J fill:#6366f1,color:#fff,stroke:none
 ```
