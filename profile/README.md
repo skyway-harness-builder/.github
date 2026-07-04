@@ -4,40 +4,47 @@
 
 <br/>
 
-**Durable, reviewable AI agent workflows — from a single text file.**
+**Put repetitive work on autopilot — with AI you can read, review, and trust.**
 
 <br/>
 
-![Go](https://img.shields.io/badge/Go-single_binary-00ADD8?logo=go&logoColor=white)
+![Go](https://img.shields.io/badge/one_program-no_servers_needed-00ADD8?logo=go&logoColor=white)
 ![Platforms](https://img.shields.io/badge/macOS_·_Linux_·_Windows-supported-6366f1)
 ![Powered by Claude](https://img.shields.io/badge/powered_by-Claude-a855f7)
-![State](https://img.shields.io/badge/state-SQLite,_zero_services-38bdf8)
+![History](https://img.shields.io/badge/every_run-recorded-38bdf8)
 
 </div>
 
 ---
 
-A `.sky` file is a whole automation you can read in one sitting: the trigger, the DAG, every prompt, every budget. skyway's daemon runs it — Claude sessions, bash, scripts, HTTP calls, approval gates — streams each step live over WebSocket, and keeps the full run history queryable.
+## What is skyway?
+
+skyway runs **workflows**: step-by-step jobs where an AI does the actual work — reviewing a code change, drafting release notes, checking that a system is healthy, triaging a bug report. Each workflow lives in one plain text file that anyone can open and read: what triggers it, what happens at each step, and how much it's allowed to spend.
+
+That last part matters. AI that acts on your behalf shouldn't be a black box. With skyway you can always answer three questions: *what will it do, what did it do, and what did it cost?*
+
+- 🔍 **You can read it.** The whole job is one file — no hidden logic, no settings buried in a dashboard.
+- 🛑 **It's careful.** Spending caps on every step, approval gates for anything risky, and it stops (rather than guesses) when a check fails.
+- 🧾 **It keeps receipts.** Every run is recorded: each step, its output, its cost. Watch it live or look it up later.
+- 🏠 **It runs on your machines.** One program to install. No servers, no accounts, no data leaving your control except the AI calls themselves.
+
+## See one
+
+Here's a workflow that reviews every open pull request — the picture and the actual file that runs it:
 
 ```mermaid
-```mermaid
 flowchart LR
-    T([GitHub webhook<br/>cron · manual]) --> S["scan — bash"]
-    S --> R["review ×N — foreach, claude"]
-    R --> J{"judge — fail-closed gate"}
-    J -->|pass| D([done · emit])
-    J -->|fail| F["notify — on failure only"]
+    T([something happens:<br/>a schedule, a click, a GitHub event]) --> S["gather the list of PRs"]
+    S --> R["AI reviews each one — 3 at a time"]
+    R --> J{"quality check"}
+    J -->|pass| D([done — results posted])
+    J -->|fail| F["tell a human"]
 
     style T fill:#38bdf8,color:#fff,stroke:none
     style D fill:#22c55e,color:#fff,stroke:none
     style F fill:#f43f5e,color:#fff,stroke:none
     style J fill:#6366f1,color:#fff,stroke:none
 ```
-    style F fill:#f43f5e,color:#fff,stroke:none
-    style J fill:#6366f1,color:#fff,stroke:none
-```
-
-…and the file that runs it:
 
 ```
 §scan§
@@ -55,23 +62,22 @@ Review PR {{item}} ({{item_index}}/{{item_total}}). Post findings as a comment.
 ∆∆
 ```
 
-Written by LLMs, for LLMs — reviewed by humans.
-
-<br/>
+Fifteen lines. That's the entire automation — and your team can review it like any other document.
 
 ## 🧭 Explore
 
 | | |
 |---|---|
-| 📚 **[essential-workflows](https://github.com/skyway-harness-builder/essential-workflows)** | The curated first-party library — essentials only. Embedded in every binary, installable via `skyway library`. |
-| 🐛 **[issues](https://github.com/skyway-harness-builder/issues)** | Bug reports and feature requests. Tell us what broke or what's missing. |
+| 📚 **[essential-workflows](https://github.com/skyway-harness-builder/essential-workflows)** | Ready-made workflows, curated to the essentials. Included with skyway, or install just the ones you want. |
+| 🐛 **[issues](https://github.com/skyway-harness-builder/issues)** | Something broken or missing? Tell us here. |
 
-## ⚡ Why skyway
+<details>
+<summary><strong>⚙️ For the engineers</strong></summary>
+<br/>
 
-- 📝 **Workflows as text** — one reviewable file per automation; diff it, lint it, version it.
-- 🛡️ **Fail-closed by design** — judge → sentinel → deterministic gates, per-node USD budgets, per-dependency circuit breakers, secrets scrubbed at the log boundary.
-- 🔁 **A quality flywheel** — `skyway lint` (SKY-WF-\* codes) · `skyway eval` (outcome scoreboard) · `skyway optimize` (prompt-variant search).
-- 📦 **Runs anywhere** — one Go binary, SQLite state, no external services. Dashboard optional.
+`.sky` workflows are DAGs of nodes — Claude sessions, bash, scripts, HTTP calls, approval gates — with GitHub/cron/manual triggers, per-node USD budgets and retries, `foreach` fan-out with concurrency caps, and fail-closed judge→gate patterns. The Go daemon streams every step over WebSocket, scrubs secrets at the log boundary, trips per-dependency circuit breakers, and persists runs in SQLite. Quality tooling ships in the binary: `skyway lint` (SKY-WF-\* codes), `skyway eval` (outcome scoreboard), `skyway optimize` (prompt-variant search).
+
+</details>
 
 <br/>
 
