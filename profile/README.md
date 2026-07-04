@@ -87,17 +87,7 @@ Jobs from the [essential-workflows](https://github.com/skyway-harness-builder/es
 | 🐛 **[issues](https://github.com/skyway-harness-builder/issues)** | Something broken or missing? Tell us here. |
 | ✅ **[sky-lint-action](https://github.com/skylence-be/sky-lint-action)** | Check workflow files automatically on every change, right in GitHub. |
 
-<details>
-<summary><strong>⚙️ For the engineers</strong></summary>
-<br/>
-
-A `.sky` file is a DAG over **15 node primitives** — Claude sessions, bash, bun/uv scripts, HTTP, approval gates, locks, `foreach` fan-out with concurrency caps, and multi-agent `spawn`/`council` with three-layer boundary enforcement (system prompt, PreToolUse hook denial, post-hoc `git status` audit). Triggers: GitHub, GitLab, Sentry, Linear, and Jira webhooks, cron schedules, workflow-to-workflow events, or `skyway run`.
-
-The Go daemon (REST + WebSocket, SQLite state) enforces per-node/per-workflow/monthly USD budgets *before* invoking Claude, scrubs secrets at the log-emission boundary, trips per-dependency circuit breakers, and survives restarts mid-approval. Around it: `skyway lint` (90+ SKY-WF-\* codes, parse-time safety over runtime defense), `skyway eval` → `skyway optimize` (outcome scoreboard → prompt-variant search with a train/holdout split; report-only, never auto-applied), `skyway replay` / `replay-diff` / `playback` for deterministic time-travel debugging, a three-tier compound-knowledge store injected into every session, an AES-256-GCM secret vault, and ~50 CLI commands total. Workflows run in per-node git worktrees when asked; multi-user mode adds OAuth bearer tokens and tool-deny ACLs.
-
-Claude-only, on purpose. No provider abstraction.
-
-</details>
+**TL;DR** — one program on your own machine. Describe a job in one readable file, and skyway runs it with Claude: on schedule, on budget, with a human in the loop for anything risky, and a full record of every run.
 
 <br/>
 
