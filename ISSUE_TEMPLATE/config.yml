@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: skyway bug reports & feature requests (central tracker)
+    url: https://github.com/skyway-harness-builder/issues/issues/new
+    about: All product issues live in one tracker — please file there, whatever repo you found the problem in.
+  - name: Security vulnerability
+    url: https://github.com/skyway-harness-builder/skyway/security/advisories/new
+    about: Never report security problems in a public issue.
