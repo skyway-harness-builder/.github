@@ -85,7 +85,7 @@ Jobs from the [essential-workflows](https://github.com/skyway-harness-builder/es
 |---|---|
 | 📚 **[essential-workflows](https://github.com/skyway-harness-builder/essential-workflows)** | The curated first-party job library — essentials only, nothing padded. |
 | 🐛 **[issues](https://github.com/skyway-harness-builder/issues)** | Something broken or missing? Tell us here. |
-| ✅ **[sky-lint-action](https://github.com/skylence-be/sky-lint-action)** | Check workflow files automatically on every change, right in GitHub. |
+| ✅ **[lint-action](https://github.com/skyway-harness-builder/lint-action)** | Check workflow files automatically on every change, right in GitHub. |
 
 **TL;DR** — one program on your own machine. Describe a job in one readable file, and skyway runs it with Claude: on schedule, on budget, with a human in the loop for anything risky, and a full record of every run.
 
