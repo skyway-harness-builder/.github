@@ -1,8 +1,39 @@
-# skyway
+<div align="center">
 
-**The Claude Code harness builder.** skyway runs durable, multi-node AI workflows defined in `.sky` files — a format written by LLMs, for LLMs, reviewed by humans.
+<img src="https://raw.githubusercontent.com/skyway-harness-builder/.github/main/profile/assets/skyway-wordmark.svg" alt="skyway — the Claude Code harness builder" width="520"/>
 
-A workflow is a DAG of nodes (Claude sessions, bash, scripts, HTTP calls, approval gates) with triggers (GitHub webhooks, cron schedules, manual runs), budgets, retries, and fan-out. The daemon executes them, streams every step over WebSocket, and keeps the full run history queryable.
+<br/>
+
+**Durable, reviewable AI agent workflows — from a single text file.**
+
+<br/>
+
+![Go](https://img.shields.io/badge/Go-single_binary-00ADD8?logo=go&logoColor=white)
+![Platforms](https://img.shields.io/badge/macOS_·_Linux_·_Windows-supported-6366f1)
+![Powered by Claude](https://img.shields.io/badge/powered_by-Claude-a855f7)
+![State](https://img.shields.io/badge/state-SQLite,_zero_services-38bdf8)
+
+</div>
+
+---
+
+A `.sky` file is a whole automation you can read in one sitting: the trigger, the DAG, every prompt, every budget. skyway's daemon runs it — Claude sessions, bash, scripts, HTTP calls, approval gates — streams each step live over WebSocket, and keeps the full run history queryable.
+
+```mermaid
+flowchart LR
+    T([GitHub webhook<br/>cron · manual]) --> S[scan<br/><sub>bash</sub>]
+    S --> R[review ×N<br/><sub>foreach · claude</sub>]
+    R --> J{judge<br/><sub>fail-closed gate</sub>}
+    J -->|pass| D([done · emit])
+    J -->|fail| F[notify<br/><sub>on failure only</sub>]
+
+    style T fill:#38bdf8,color:#fff,stroke:none
+    style D fill:#22c55e,color:#fff,stroke:none
+    style F fill:#f43f5e,color:#fff,stroke:none
+    style J fill:#6366f1,color:#fff,stroke:none
+```
+
+…and the file that runs it:
 
 ```
 §scan§
@@ -20,18 +51,28 @@ Review PR {{item}} ({{item_index}}/{{item_total}}). Post findings as a comment.
 ∆∆
 ```
 
-## Repositories
+Written by LLMs, for LLMs — reviewed by humans.
 
-| Repo | What it is |
-|------|------------|
-| [essential-workflows](https://github.com/skyway-harness-builder/essential-workflows) | The curated first-party workflow library — essentials only. Embedded in every binary and installable via `skyway library`. |
-| [issues](https://github.com/skyway-harness-builder/issues) | Bug reports and feature requests for the harness builder. |
+<br/>
 
-## Highlights
+## 🧭 Explore
 
-- **Workflows as text** — the whole automation is one reviewable `.sky` file: triggers, DAG, prompts, budgets.
-- **Fail-closed by design** — judge → sentinel → deterministic gate patterns, per-node USD budgets, per-dependency circuit breakers, secret scrubbing at the log boundary.
-- **A quality flywheel** — `skyway lint` (SKY-WF-* codes), `skyway eval` (outcome scoreboard), `skyway optimize` (prompt-variant search).
-- **Runs anywhere** — single Go binary for Linux, macOS, and Windows; SQLite state; no external services required.
+| | |
+|---|---|
+| 📚 **[essential-workflows](https://github.com/skyway-harness-builder/essential-workflows)** | The curated first-party library — essentials only. Embedded in every binary, installable via `skyway library`. |
+| 🐛 **[issues](https://github.com/skyway-harness-builder/issues)** | Bug reports and feature requests. Tell us what broke or what's missing. |
 
-Built by [Skylence](https://skylence.be).
+## ⚡ Why skyway
+
+- 📝 **Workflows as text** — one reviewable file per automation; diff it, lint it, version it.
+- 🛡️ **Fail-closed by design** — judge → sentinel → deterministic gates, per-node USD budgets, per-dependency circuit breakers, secrets scrubbed at the log boundary.
+- 🔁 **A quality flywheel** — `skyway lint` (SKY-WF-\* codes) · `skyway eval` (outcome scoreboard) · `skyway optimize` (prompt-variant search).
+- 📦 **Runs anywhere** — one Go binary, SQLite state, no external services. Dashboard optional.
+
+<br/>
+
+<div align="center">
+
+Built by **[Skylence](https://skylence.be)**
+
+</div>

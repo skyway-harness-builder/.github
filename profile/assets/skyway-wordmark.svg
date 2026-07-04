@@ -1,0 +1,33 @@
+<svg width="520" height="150" viewBox="0 0 520 150" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="skyway — the Claude Code harness builder">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="520" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="0.55" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- flight path: a DAG traced across the sky -->
+  <g stroke="url(#sky)" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round" opacity="0.9">
+    <path d="M 60 44 C 140 14, 220 14, 262 30"/>
+    <path d="M 262 30 C 320 52, 360 20, 458 34"/>
+    <path d="M 262 30 C 310 44, 380 58, 430 52"/>
+  </g>
+  <g fill="url(#sky)">
+    <circle cx="60" cy="44" r="5"/>
+    <circle cx="262" cy="30" r="6"/>
+    <circle cx="430" cy="52" r="4.5"/>
+    <circle cx="458" cy="34" r="5"/>
+  </g>
+  <!-- paper plane at the join -->
+  <g transform="translate(458 34) rotate(14)">
+    <path d="M 0 0 L -22 7 L -14 0 L -22 -8 Z" fill="#6366f1"/>
+  </g>
+
+  <text x="50%" y="112" text-anchor="middle"
+        font-family="ui-rounded, 'SF Pro Rounded', system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="64" font-weight="800" letter-spacing="-2" fill="url(#sky)">skyway</text>
+  <text x="50%" y="140" text-anchor="middle"
+        font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+        font-size="16" font-weight="500" letter-spacing="3" fill="#8b95a7">THE CLAUDE CODE HARNESS BUILDER</text>
+</svg>
